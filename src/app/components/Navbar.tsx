@@ -9,6 +9,7 @@ import {
 
 export default function NavBar() {
   return (
+    <div>
     <Navbar>
       <NavbarBrand>
         <p className="font-bold text-inherit">DallE Web</p>
@@ -31,5 +32,6 @@ export default function NavBar() {
         </NavbarItem>
       </NavbarContent>
     </Navbar>
+    </div>
   )
 }
