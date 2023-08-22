@@ -8,10 +8,13 @@ import {
   DropdownItem,
 } from "@nextui-org/dropdown";
 import { Button, ButtonGroup } from "@nextui-org/button";
+import { useDisclosure} from "@nextui-org/modal";
+import { ModalComponent } from "./ModalComponent";
 
 export default function InputComponent() {
   const [value, setValue] = useState("");
   const [selectedKeys, setSelectedKeys] = useState<Set<Key>>(new Set(["256px"]));
+  const {isOpen, onOpen, onOpenChange} = useDisclosure();
 
   const selectedValue = useMemo(
     () => Array.from(selectedKeys).join(", ").replaceAll("_", " "),
@@ -36,7 +39,7 @@ export default function InputComponent() {
       </div>
       <div className="flex justify-center mt-4 items-end">
         <ButtonGroup>
-          <Button className="h-14  min-w-min">Prompt Option</Button>
+          <Button onPress={onOpen} className="h-14  min-w-min">Prompt Option</Button>
           <Dropdown>
             <DropdownTrigger>
               <Button
@@ -70,6 +73,7 @@ export default function InputComponent() {
           <Button className="h-14 min-w-min">Generate</Button>
         </ButtonGroup>
       </div>
+      <ModalComponent isOpen={isOpen} onOpenChange={onOpenChange}/>
     </>
   );
 }
